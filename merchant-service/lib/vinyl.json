@@ -10,17 +10,24 @@
     "thumbnail": "https://example.com/images/vinyl/pink-floyd-dsotm.jpg",
     "description": "50th anniversary 180g remaster of the legendary concept album. Gatefold sleeve.",
     "category": "Vinyl Records",
-    "stock": 12,
+    "stock": 4,
     "inStock": true,
     "rating": 4.9,
     "reviews": 3200,
     "selectors": {
-      "genre": ["Progressive Rock", "Art Rock"],
+      "genre": [
+        "Progressive Rock",
+        "Art Rock"
+      ],
       "era": "1970s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Atmospheric", "Trippy", "Introspective"]
+      "mood": [
+        "Atmospheric",
+        "Trippy",
+        "Introspective"
+      ]
     }
   },
   {
@@ -34,17 +41,24 @@
     "thumbnail": "https://example.com/images/vinyl/fleetwood-mac-rumours.jpg",
     "description": "One of the best-selling albums ever. Newly remastered for incredible clarity.",
     "category": "Vinyl Records",
-    "stock": 15,
+    "stock": 5,
     "inStock": true,
     "rating": 4.8,
     "reviews": 2800,
     "selectors": {
-      "genre": ["Soft Rock", "Pop Rock"],
+      "genre": [
+        "Soft Rock",
+        "Pop Rock"
+      ],
       "era": "1970s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "Standard Vinyl",
-      "mood": ["Emotional", "Romantic", "Nostalgic"]
+      "mood": [
+        "Emotional",
+        "Romantic",
+        "Nostalgic"
+      ]
     }
   },
   {
@@ -53,22 +67,29 @@
     "artist": "Miles Davis",
     "album": "Kind of Blue",
     "title": "Miles Davis - Kind of Blue (Mono)",
-    "price": 38,
+    "price": 43,
     "currency": "USD",
     "thumbnail": "https://example.com/images/vinyl/miles-davis-kob.jpg",
     "description": "The best-selling jazz record of all time. Original mono mix on 180g vinyl.",
     "category": "Vinyl Records",
-    "stock": 8,
+    "stock": 11,
     "inStock": true,
     "rating": 4.9,
     "reviews": 1900,
     "selectors": {
-      "genre": ["Jazz", "Modal Jazz"],
+      "genre": [
+        "Jazz",
+        "Modal Jazz"
+      ],
       "era": "1950s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl Mono",
-      "mood": ["Cool", "Relaxed", "Sophisticated"]
+      "mood": [
+        "Cool",
+        "Relaxed",
+        "Sophisticated"
+      ]
     }
   },
   {
@@ -82,17 +103,25 @@
     "thumbnail": "https://example.com/images/vinyl/radiohead-okcomputer.jpg",
     "description": "Expanded 20th anniversary edition with B-sides and unreleased tracks.",
     "category": "Vinyl Records",
-    "stock": 6,
+    "stock": 3,
     "inStock": true,
     "rating": 4.8,
     "reviews": 1400,
     "selectors": {
-      "genre": ["Alternative Rock", "Art Rock", "Electronic"],
+      "genre": [
+        "Alternative Rock",
+        "Art Rock",
+        "Electronic"
+      ],
       "era": "1990s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Triple LP",
-      "mood": ["Anxious", "Futuristic", "Melancholic"]
+      "mood": [
+        "Anxious",
+        "Futuristic",
+        "Melancholic"
+      ]
     }
   },
   {
@@ -106,17 +135,24 @@
     "thumbnail": "https://example.com/images/vinyl/nirvana-nevermind.jpg",
     "description": "The album that changed rock music. Crisp remaster on heavy vinyl.",
     "category": "Vinyl Records",
-    "stock": 18,
+    "stock": 3,
     "inStock": true,
     "rating": 4.7,
     "reviews": 2200,
     "selectors": {
-      "genre": ["Grunge", "Alternative Rock"],
+      "genre": [
+        "Grunge",
+        "Alternative Rock"
+      ],
       "era": "1990s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Angry", "Raw", "Energetic"]
+      "mood": [
+        "Angry",
+        "Raw",
+        "Energetic"
+      ]
     }
   },
   {
@@ -130,17 +166,25 @@
     "thumbnail": "https://example.com/images/vinyl/daft-punk-ram.jpg",
     "description": "Grammy-winning electronic masterpiece. Sounds incredible on vinyl.",
     "category": "Vinyl Records",
-    "stock": 7,
+    "stock": 4,
     "inStock": true,
     "rating": 4.8,
     "reviews": 1650,
     "selectors": {
-      "genre": ["Electronic", "Disco", "Funk"],
+      "genre": [
+        "Electronic",
+        "Disco",
+        "Funk"
+      ],
       "era": "2010s",
       "condition": "New",
       "pressing": "Original",
       "format": "180g Double LP",
-      "mood": ["Groovy", "Nostalgic", "Euphoric"]
+      "mood": [
+        "Groovy",
+        "Nostalgic",
+        "Euphoric"
+      ]
     }
   },
   {
@@ -154,17 +198,24 @@
     "thumbnail": "https://example.com/images/vinyl/beatles-abbey-road.jpg",
     "description": "Giles Martin remix celebrating 50 years. The iconic crosswalk cover.",
     "category": "Vinyl Records",
-    "stock": 14,
+    "stock": 4,
     "inStock": true,
     "rating": 4.9,
     "reviews": 2400,
     "selectors": {
-      "genre": ["Rock", "Pop Rock"],
+      "genre": [
+        "Rock",
+        "Pop Rock"
+      ],
       "era": "1960s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Joyful", "Experimental", "Classic"]
+      "mood": [
+        "Joyful",
+        "Experimental",
+        "Classic"
+      ]
     }
   },
   {
@@ -178,17 +229,25 @@
     "thumbnail": "https://example.com/images/vinyl/kendrick-tpab.jpg",
     "description": "Critically acclaimed hip-hop opus blending jazz, funk, and spoken word.",
     "category": "Vinyl Records",
-    "stock": 10,
+    "stock": 3,
     "inStock": true,
     "rating": 4.9,
     "reviews": 1100,
     "selectors": {
-      "genre": ["Hip Hop", "Jazz Rap", "Funk"],
+      "genre": [
+        "Hip Hop",
+        "Jazz Rap",
+        "Funk"
+      ],
       "era": "2010s",
       "condition": "New",
       "pressing": "Original",
       "format": "Standard Double LP",
-      "mood": ["Conscious", "Complex", "Political"]
+      "mood": [
+        "Conscious",
+        "Complex",
+        "Political"
+      ]
     }
   },
   {
@@ -202,17 +261,25 @@
     "thumbnail": "https://example.com/images/vinyl/amy-winehouse-btb.jpg",
     "description": "Her defining album with that unmistakable voice. 180g pressing.",
     "category": "Vinyl Records",
-    "stock": 11,
+    "stock": 8,
     "inStock": true,
     "rating": 4.7,
     "reviews": 1800,
     "selectors": {
-      "genre": ["Soul", "R&B", "Jazz"],
+      "genre": [
+        "Soul",
+        "R&B",
+        "Jazz"
+      ],
       "era": "2000s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Soulful", "Heartbreak", "Passionate"]
+      "mood": [
+        "Soulful",
+        "Heartbreak",
+        "Passionate"
+      ]
     }
   },
   {
@@ -226,17 +293,24 @@
     "thumbnail": "https://example.com/images/vinyl/led-zeppelin-iv.jpg",
     "description": "Stairway to Heaven and more. Jimmy Page supervised remaster.",
     "category": "Vinyl Records",
-    "stock": 13,
+    "stock": 11,
     "inStock": true,
     "rating": 4.8,
     "reviews": 2600,
     "selectors": {
-      "genre": ["Hard Rock", "Blues Rock"],
+      "genre": [
+        "Hard Rock",
+        "Blues Rock"
+      ],
       "era": "1970s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Epic", "Powerful", "Mystical"]
+      "mood": [
+        "Epic",
+        "Powerful",
+        "Mystical"
+      ]
     }
   },
   {
@@ -255,12 +329,20 @@
     "rating": 4.7,
     "reviews": 980,
     "selectors": {
-      "genre": ["Indie Rock", "Art Rock", "Baroque Pop"],
+      "genre": [
+        "Indie Rock",
+        "Art Rock",
+        "Baroque Pop"
+      ],
       "era": "2000s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Anthemic", "Emotional", "Uplifting"]
+      "mood": [
+        "Anthemic",
+        "Emotional",
+        "Uplifting"
+      ]
     }
   },
   {
@@ -279,12 +361,20 @@
     "rating": 4.9,
     "reviews": 1400,
     "selectors": {
-      "genre": ["Soul", "R&B", "Funk"],
+      "genre": [
+        "Soul",
+        "R&B",
+        "Funk"
+      ],
       "era": "1970s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Double LP + 7\"",
-      "mood": ["Joyful", "Soulful", "Celebratory"]
+      "mood": [
+        "Joyful",
+        "Soulful",
+        "Celebratory"
+      ]
     }
   },
   {
@@ -298,17 +388,25 @@
     "thumbnail": "https://example.com/images/vinyl/tame-impala-currents.jpg",
     "description": "Boxset with bonus disc of B-sides. Psychedelic pop perfection.",
     "category": "Vinyl Records",
-    "stock": 4,
+    "stock": 5,
     "inStock": true,
     "rating": 4.8,
     "reviews": 720,
     "selectors": {
-      "genre": ["Psychedelic Pop", "Synth Pop", "Neo-Psychedelia"],
+      "genre": [
+        "Psychedelic Pop",
+        "Synth Pop",
+        "Neo-Psychedelia"
+      ],
       "era": "2010s",
       "condition": "New",
       "pressing": "Limited Edition",
       "format": "Colored Vinyl Boxset",
-      "mood": ["Dreamy", "Introspective", "Groovy"]
+      "mood": [
+        "Dreamy",
+        "Introspective",
+        "Groovy"
+      ]
     }
   },
   {
@@ -322,17 +420,24 @@
     "thumbnail": "https://example.com/images/vinyl/bowie-ziggy.jpg",
     "description": "Limited gold vinyl pressing. The album that made Bowie a star.",
     "category": "Vinyl Records",
-    "stock": 5,
+    "stock": 12,
     "inStock": true,
     "rating": 4.9,
     "reviews": 1600,
     "selectors": {
-      "genre": ["Glam Rock", "Art Rock"],
+      "genre": [
+        "Glam Rock",
+        "Art Rock"
+      ],
       "era": "1970s",
       "condition": "New",
       "pressing": "Limited Edition",
       "format": "Colored Vinyl",
-      "mood": ["Theatrical", "Rebellious", "Iconic"]
+      "mood": [
+        "Theatrical",
+        "Rebellious",
+        "Iconic"
+      ]
     }
   },
   {
@@ -346,17 +451,25 @@
     "thumbnail": "https://example.com/images/vinyl/portishead-dummy.jpg",
     "description": "The trip-hop blueprint. Haunting, beautiful, and unlike anything else.",
     "category": "Vinyl Records",
-    "stock": 8,
+    "stock": 3,
     "inStock": true,
     "rating": 4.8,
     "reviews": 890,
     "selectors": {
-      "genre": ["Trip Hop", "Electronic", "Downtempo"],
+      "genre": [
+        "Trip Hop",
+        "Electronic",
+        "Downtempo"
+      ],
       "era": "1990s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Dark", "Atmospheric", "Sensual"]
+      "mood": [
+        "Dark",
+        "Atmospheric",
+        "Sensual"
+      ]
     }
   },
   {
@@ -370,17 +483,25 @@
     "thumbnail": "https://example.com/images/vinyl/cure-disintegration.jpg",
     "description": "Gothic rock masterpiece. Lovesong never sounded better than on vinyl.",
     "category": "Vinyl Records",
-    "stock": 7,
+    "stock": 11,
     "inStock": true,
     "rating": 4.8,
     "reviews": 1100,
     "selectors": {
-      "genre": ["Gothic Rock", "Alternative Rock", "Post-Punk"],
+      "genre": [
+        "Gothic Rock",
+        "Alternative Rock",
+        "Post-Punk"
+      ],
       "era": "1980s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Double LP",
-      "mood": ["Melancholic", "Romantic", "Atmospheric"]
+      "mood": [
+        "Melancholic",
+        "Romantic",
+        "Atmospheric"
+      ]
     }
   },
   {
@@ -394,17 +515,25 @@
     "thumbnail": "https://example.com/images/vinyl/frank-ocean-blonde.jpg",
     "description": "Rare official pressing. The defining R&B album of the 2010s.",
     "category": "Vinyl Records",
-    "stock": 3,
+    "stock": 8,
     "inStock": true,
     "rating": 4.9,
     "reviews": 2200,
     "selectors": {
-      "genre": ["R&B", "Alternative R&B", "Art Pop"],
+      "genre": [
+        "R&B",
+        "Alternative R&B",
+        "Art Pop"
+      ],
       "era": "2010s",
       "condition": "New",
       "pressing": "Limited Edition",
       "format": "Standard Double LP",
-      "mood": ["Introspective", "Emotional", "Avant-garde"]
+      "mood": [
+        "Introspective",
+        "Emotional",
+        "Avant-garde"
+      ]
     }
   },
   {
@@ -418,17 +547,24 @@
     "thumbnail": "https://example.com/images/vinyl/bon-iver-emma.jpg",
     "description": "The cabin recording that started it all. Intimate and haunting.",
     "category": "Vinyl Records",
-    "stock": 12,
+    "stock": 6,
     "inStock": true,
     "rating": 4.7,
     "reviews": 1300,
     "selectors": {
-      "genre": ["Indie Folk", "Chamber Folk"],
+      "genre": [
+        "Indie Folk",
+        "Chamber Folk"
+      ],
       "era": "2000s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Intimate", "Melancholic", "Wintry"]
+      "mood": [
+        "Intimate",
+        "Melancholic",
+        "Wintry"
+      ]
     }
   },
   {
@@ -442,17 +578,25 @@
     "thumbnail": "https://example.com/images/vinyl/queen-opera.jpg",
     "description": "Half-speed mastered for ultimate fidelity. Bohemian Rhapsody in all its glory.",
     "category": "Vinyl Records",
-    "stock": 9,
+    "stock": 7,
     "inStock": true,
     "rating": 4.9,
     "reviews": 1800,
     "selectors": {
-      "genre": ["Rock", "Progressive Rock", "Glam Rock"],
+      "genre": [
+        "Rock",
+        "Progressive Rock",
+        "Glam Rock"
+      ],
       "era": "1970s",
       "condition": "New",
       "pressing": "Audiophile Edition",
       "format": "Half-Speed Master",
-      "mood": ["Epic", "Theatrical", "Eclectic"]
+      "mood": [
+        "Epic",
+        "Theatrical",
+        "Eclectic"
+      ]
     }
   },
   {
@@ -466,17 +610,25 @@
     "thumbnail": "https://example.com/images/vinyl/khruangbin-ctm.jpg",
     "description": "Global grooves from Texas. Perfect for sunny afternoons.",
     "category": "Vinyl Records",
-    "stock": 11,
+    "stock": 5,
     "inStock": true,
     "rating": 4.6,
     "reviews": 780,
     "selectors": {
-      "genre": ["Psychedelic Soul", "Funk", "World"],
+      "genre": [
+        "Psychedelic Soul",
+        "Funk",
+        "World"
+      ],
       "era": "2010s",
       "condition": "New",
       "pressing": "Original",
       "format": "Standard Vinyl",
-      "mood": ["Chill", "Groovy", "Worldly"]
+      "mood": [
+        "Chill",
+        "Groovy",
+        "Worldly"
+      ]
     }
   },
   {
@@ -490,17 +642,25 @@
     "thumbnail": "https://example.com/images/vinyl/talking-heads-ril.jpg",
     "description": "Afrobeat-influenced art rock masterpiece. Once in a Lifetime is just the start.",
     "category": "Vinyl Records",
-    "stock": 10,
+    "stock": 4,
     "inStock": true,
     "rating": 4.8,
     "reviews": 1200,
     "selectors": {
-      "genre": ["Art Rock", "New Wave", "Afrobeat"],
+      "genre": [
+        "Art Rock",
+        "New Wave",
+        "Afrobeat"
+      ],
       "era": "1980s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Funky", "Cerebral", "Anxious"]
+      "mood": [
+        "Funky",
+        "Cerebral",
+        "Anxious"
+      ]
     }
   },
   {
@@ -514,17 +674,25 @@
     "thumbnail": "https://example.com/images/vinyl/massive-attack-mezz.jpg",
     "description": "Dark, heavy trip-hop. Teardrop and Angel in their full vinyl glory.",
     "category": "Vinyl Records",
-    "stock": 6,
+    "stock": 8,
     "inStock": true,
     "rating": 4.8,
     "reviews": 920,
     "selectors": {
-      "genre": ["Trip Hop", "Electronic", "Alternative"],
+      "genre": [
+        "Trip Hop",
+        "Electronic",
+        "Alternative"
+      ],
       "era": "1990s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Double LP",
-      "mood": ["Dark", "Intense", "Cinematic"]
+      "mood": [
+        "Dark",
+        "Intense",
+        "Cinematic"
+      ]
     }
   },
   {
@@ -538,17 +706,25 @@
     "thumbnail": "https://example.com/images/vinyl/solange-seat.jpg",
     "description": "Meditative R&B exploring Black identity. Cranes in the Sky is stunning.",
     "category": "Vinyl Records",
-    "stock": 8,
+    "stock": 3,
     "inStock": true,
     "rating": 4.7,
     "reviews": 650,
     "selectors": {
-      "genre": ["R&B", "Neo-Soul", "Art Pop"],
+      "genre": [
+        "R&B",
+        "Neo-Soul",
+        "Art Pop"
+      ],
       "era": "2010s",
       "condition": "New",
       "pressing": "Original",
       "format": "Standard Double LP",
-      "mood": ["Contemplative", "Empowering", "Soulful"]
+      "mood": [
+        "Contemplative",
+        "Empowering",
+        "Soulful"
+      ]
     }
   },
   {
@@ -562,17 +738,25 @@
     "thumbnail": "https://example.com/images/vinyl/coltrane-love.jpg",
     "description": "Acoustic Sounds Series audiophile pressing. Spiritual jazz at its peak.",
     "category": "Vinyl Records",
-    "stock": 5,
+    "stock": 7,
     "inStock": true,
     "rating": 4.9,
     "reviews": 890,
     "selectors": {
-      "genre": ["Jazz", "Spiritual Jazz", "Free Jazz"],
+      "genre": [
+        "Jazz",
+        "Spiritual Jazz",
+        "Free Jazz"
+      ],
       "era": "1960s",
       "condition": "New",
       "pressing": "Audiophile Edition",
       "format": "180g Vinyl",
-      "mood": ["Spiritual", "Intense", "Transcendent"]
+      "mood": [
+        "Spiritual",
+        "Intense",
+        "Transcendent"
+      ]
     }
   },
   {
@@ -586,17 +770,25 @@
     "thumbnail": "https://example.com/images/vinyl/tyler-igor.jpg",
     "description": "Colored vinyl pressing of his Grammy-winning synth-soul opus.",
     "category": "Vinyl Records",
-    "stock": 7,
+    "stock": 12,
     "inStock": true,
     "rating": 4.8,
     "reviews": 1100,
     "selectors": {
-      "genre": ["Hip Hop", "Synth Pop", "Soul"],
+      "genre": [
+        "Hip Hop",
+        "Synth Pop",
+        "Soul"
+      ],
       "era": "2010s",
       "condition": "New",
       "pressing": "Limited Edition",
       "format": "Colored Vinyl",
-      "mood": ["Heartbreak", "Experimental", "Bold"]
+      "mood": [
+        "Heartbreak",
+        "Experimental",
+        "Bold"
+      ]
     }
   },
   {
@@ -610,17 +802,25 @@
     "thumbnail": "https://example.com/images/vinyl/smiths-queen.jpg",
     "description": "Their masterpiece. Morrissey and Marr at their peak.",
     "category": "Vinyl Records",
-    "stock": 10,
+    "stock": 8,
     "inStock": true,
     "rating": 4.8,
     "reviews": 1450,
     "selectors": {
-      "genre": ["Indie Rock", "Post-Punk", "Jangle Pop"],
+      "genre": [
+        "Indie Rock",
+        "Post-Punk",
+        "Jangle Pop"
+      ],
       "era": "1980s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Witty", "Melancholic", "Romantic"]
+      "mood": [
+        "Witty",
+        "Melancholic",
+        "Romantic"
+      ]
     }
   },
   {
@@ -634,17 +834,25 @@
     "thumbnail": "https://example.com/images/vinyl/lcd-silver.jpg",
     "description": "Dance punk perfection. Someone Great will make you cry.",
     "category": "Vinyl Records",
-    "stock": 8,
+    "stock": 3,
     "inStock": true,
     "rating": 4.7,
     "reviews": 880,
     "selectors": {
-      "genre": ["Dance Punk", "Electronic", "Indie Rock"],
+      "genre": [
+        "Dance Punk",
+        "Electronic",
+        "Indie Rock"
+      ],
       "era": "2000s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "Standard Double LP",
-      "mood": ["Energetic", "Nostalgic", "Emotional"]
+      "mood": [
+        "Energetic",
+        "Nostalgic",
+        "Emotional"
+      ]
     }
   },
   {
@@ -658,17 +866,25 @@
     "thumbnail": "https://example.com/images/vinyl/nina-simone-spell.jpg",
     "description": "The High Priestess of Soul at her most bewitching.",
     "category": "Vinyl Records",
-    "stock": 9,
+    "stock": 8,
     "inStock": true,
     "rating": 4.7,
     "reviews": 720,
     "selectors": {
-      "genre": ["Soul", "Jazz", "Blues"],
+      "genre": [
+        "Soul",
+        "Jazz",
+        "Blues"
+      ],
       "era": "1960s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Vinyl",
-      "mood": ["Powerful", "Intimate", "Soulful"]
+      "mood": [
+        "Powerful",
+        "Intimate",
+        "Soulful"
+      ]
     }
   },
   {
@@ -682,17 +898,25 @@
     "thumbnail": "https://example.com/images/vinyl/aphex-saw.jpg",
     "description": "Foundational electronic album. Ambient and IDM at its finest.",
     "category": "Vinyl Records",
-    "stock": 6,
+    "stock": 11,
     "inStock": true,
     "rating": 4.8,
     "reviews": 650,
     "selectors": {
-      "genre": ["Ambient", "IDM", "Electronic"],
+      "genre": [
+        "Ambient",
+        "IDM",
+        "Electronic"
+      ],
       "era": "1990s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "Standard Double LP",
-      "mood": ["Dreamy", "Hypnotic", "Otherworldly"]
+      "mood": [
+        "Dreamy",
+        "Hypnotic",
+        "Otherworldly"
+      ]
     }
   },
   {
@@ -706,18 +930,25 @@
     "thumbnail": "https://example.com/images/vinyl/erykah-badu-baduizm.jpg",
     "description": "The album that defined neo-soul. On and On is timeless.",
     "category": "Vinyl Records",
-    "stock": 7,
+    "stock": 9,
     "inStock": true,
     "rating": 4.8,
     "reviews": 920,
     "selectors": {
-      "genre": ["Neo-Soul", "R&B", "Hip Hop"],
+      "genre": [
+        "Neo-Soul",
+        "R&B",
+        "Hip Hop"
+      ],
       "era": "1990s",
       "condition": "New",
       "pressing": "Reissue",
       "format": "180g Double LP",
-      "mood": ["Chill", "Soulful", "Conscious"]
+      "mood": [
+        "Chill",
+        "Soulful",
+        "Conscious"
+      ]
     }
   }
 ]
-

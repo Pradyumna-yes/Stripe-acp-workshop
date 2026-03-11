@@ -48,8 +48,9 @@ const appearance: Appearance = {
 // Inner form component that uses Stripe hooks
 function SetupForm({ onSuccess, onCancel, email }: PaymentSetupProps) {
   // TODO: Use the useStripe() and useElements() hooks
-  const stripe = null;    // Replace with: useStripe();
-  const elements = null;  // Replace with: useElements();
+  const stripe = useStripe();
+const elements = useElements();
+  // Replace with: useElements();
   
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -66,17 +67,14 @@ function SetupForm({ onSuccess, onCancel, email }: PaymentSetupProps) {
     
     try {
       // TODO: Confirm the SetupIntent with the PaymentElement
-      const submitError = { message: 'TODO: Implement confirmSetup' };
-      const setupIntent = null;
-      
-      // Replace the above with:
-      // const { error: submitError, setupIntent } = await stripe.confirmSetup({
-      //   elements,
-      //   confirmParams: {
-      //     return_url: window.location.href,
-      //   },
-      //   redirect: 'if_required',
-      // });
+      const { error: submitError, setupIntent } = await stripe.confirmSetup({
+  elements,
+  confirmParams: {
+    return_url: window.location.href,
+  },
+  redirect: 'if_required',
+});
+
       
       if (submitError) {
         setError(submitError.message || 'Failed to save payment method');
@@ -85,23 +83,17 @@ function SetupForm({ onSuccess, onCancel, email }: PaymentSetupProps) {
       
       if (setupIntent && setupIntent.payment_method) {
         // TODO: Save the payment method to the Agent backend
-        // Uncomment the code below:
-        
-        // // Always use session customer ID (GUID-based, not email)
-        // // Email is separate profile info for receipts only
-        // const customerId = getOrCreateCustomerId();
-        // const paymentMethodId = typeof setupIntent.payment_method === 'string' 
-        //   ? setupIntent.payment_method 
-        //   : setupIntent.payment_method.id;
-        // 
-        // // Extract last4 from payment method if available
-        // const last4 = typeof setupIntent.payment_method === 'object' 
-        //   ? setupIntent.payment_method.card?.last4 
-        //   : undefined;
-        // 
-        // console.log('💳 Saving payment method for session customer:', customerId);
-        // await savePaymentMethod(customerId, paymentMethodId);
-        // onSuccess(paymentMethodId, last4);  // ← Pass last4 to update profile display
+        // Always use session customer ID (GUID-based, not email)
+// Email is separate profile info for receipts only
+const customerId = getOrCreateCustomerId();
+const paymentMethodId = typeof setupIntent.payment_method === 'string' 
+  ? setupIntent.payment_method 
+  : setupIntent.payment_method.id;
+
+console.log('💳 Saving payment method for session customer:', customerId);
+await savePaymentMethod(customerId, paymentMethodId);
+onSuccess(paymentMethodId);  // ← Important! Closes the modal
+
       }
     } catch (err: any) {
       setError(err.message || 'An error occurred');
@@ -115,9 +107,6 @@ function SetupForm({ onSuccess, onCancel, email }: PaymentSetupProps) {
       <PaymentElement 
         options={{
           layout: 'accordion',
-          defaultCollapsed: false,
-          radios: true,
-          spacedAccordionItems: true,
         }}
       />
       
@@ -179,16 +168,16 @@ export default function PaymentSetup({ onSuccess, onCancel, email }: PaymentSetu
         }
         
         // TODO: Load Stripe with the publishable key
-        setStripePromise(null); // Replace with: setStripePromise(loadStripe(publishableKey));
+        setStripePromise(loadStripe(publishableKey));
+ // Replace with: setStripePromise(loadStripe(publishableKey));
         
         // TODO: Create a SetupIntent and get the clientSecret
-        setClientSecret(null);
-        // Replace with:
-        // // Always use session customer ID (GUID-based, auto-generated)
-        // const customerId = getOrCreateCustomerId();
-        // console.log('🆔 Creating SetupIntent for session customer:', customerId);
-        // const setupIntent = await createSetupIntent(customerId);
-        // setClientSecret(setupIntent.clientSecret);
+        // Always use session customer ID (GUID-based, auto-generated)
+const customerId = getOrCreateCustomerId();
+console.log('🆔 Creating SetupIntent for session customer:', customerId);
+const setupIntent = await createSetupIntent(customerId);
+setClientSecret(setupIntent.clientSecret);
+
         
       } catch (err: any) {
         setError(err.message || 'Failed to initialize payment');
@@ -245,8 +234,18 @@ export default function PaymentSetup({ onSuccess, onCancel, email }: PaymentSetu
       </p>
       
       {/* TODO: Wrap SetupForm with Elements provider */}
-      {/* Include clientSecret and appearance in options */}
-      <SetupForm onSuccess={onSuccess} onCancel={onCancel} email={email} />
+     {/* Include clientSecret and appearance in options */}
+<Elements 
+  stripe={stripePromise} 
+  options={{ 
+    clientSecret,
+    appearance,
+  }}
+>
+  <SetupForm onSuccess={onSuccess} onCancel={onCancel} email={email} />
+</Elements>
+
+
       
       {/* Replace above with:
       <Elements 

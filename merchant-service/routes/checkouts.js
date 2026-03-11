@@ -246,11 +246,83 @@ const formatCheckoutResponse = (checkout) => {
  * - Return formatted response using formatCheckoutResponse()
  */
 router.post('/', (req, res) => {
-  // TODO: Implement this endpoint
-  return res.status(501).json({
-    error: 'TODO: Implement POST /checkouts',
-    hint: 'See workshop Module 4, Chapter 2'
-  });
+  try {
+    const { items, buyer, fulfillment_address, catalog } = req.body;
+    
+    // Validate items
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'missing_items',
+        message: 'Items array is required and must not be empty'
+      });
+    }
+    
+    // Validate each item exists and has stock - use the specified catalog
+    const products = getProducts(catalog);
+    for (const item of items) {
+      if (!item.id || typeof item.quantity !== 'number' || item.quantity < 1) {
+        return res.status(400).json({
+          type: 'invalid_request',
+          code: 'invalid_item',
+          message: 'Each item must have an id and positive quantity'
+        });
+      }
+      
+      const product = products.find(p => p.id === item.id);
+      if (!product) {
+        return res.status(400).json({
+          type: 'invalid_request',
+          code: 'product_not_found',
+          message: `Product not found: ${item.id}`
+        });
+      }
+      
+      if (!product.inStock || product.stock < item.quantity) {
+        return res.status(400).json({
+          type: 'invalid_request',
+          code: 'insufficient_stock',
+          message: `Insufficient stock for: ${product.title}`
+        });
+      }
+    }
+    
+    // Create the checkout object - pass catalog to calculateLineItems
+    const lineItems = calculateLineItems(items, catalog);
+    const checkout = {
+      id: generateId(),
+      currency: 'usd',
+      line_items: lineItems,
+      catalog: catalog,
+      payment_provider: {
+        provider: 'stripe',
+        supported_payment_methods: ['card']
+      },
+      messages: [],
+      links: [
+        { type: 'terms_of_use', url: 'https://example.com/terms' },
+        { type: 'privacy_policy', url: 'https://example.com/privacy' }
+      ],
+      created_at: new Date().toISOString()
+    };
+    
+    if (buyer) checkout.buyer = buyer;
+    if (fulfillment_address) checkout.fulfillment_address = fulfillment_address;
+    
+    // Store in our in-memory Map
+    checkouts.set(checkout.id, checkout);
+    
+    console.log('🛒 Checkout created:', checkout.id);
+    res.status(201).json(formatCheckoutResponse(checkout));
+    
+  } catch (error) {
+    console.error('Create checkout error:', error);
+    res.status(500).json({
+      type: 'processing_error',
+      code: 'internal_error',
+      message: 'An error occurred while creating the checkout'
+    });
+  }
 });
 
 
@@ -264,11 +336,28 @@ router.post('/', (req, res) => {
  * - Return formatCheckoutResponse(checkout)
  */
 router.get('/:id', (req, res) => {
-  // TODO: Implement this endpoint
-  return res.status(501).json({
-    error: 'TODO: Implement GET /checkouts/:id',
-    hint: 'See workshop Module 4, Chapter 3'
-  });
+  try {
+    const { id } = req.params;
+    const checkout = checkouts.get(id);
+    
+    if (!checkout) {
+      return res.status(404).json({
+        type: 'invalid_request',
+        code: 'checkout_not_found',
+        message: `Checkout with id '${id}' not found`
+      });
+    }
+    
+    res.json(formatCheckoutResponse(checkout));
+    
+  } catch (error) {
+    console.error('Get checkout error:', error);
+    res.status(500).json({
+      type: 'processing_error',
+      code: 'internal_error',
+      message: 'An error occurred while retrieving the checkout'
+    });
+  }
 });
 
 
@@ -286,11 +375,92 @@ router.get('/:id', (req, res) => {
  * - Return formatCheckoutResponse(checkout)
  */
 router.put('/:id', (req, res) => {
-  // TODO: Implement this endpoint
-  return res.status(501).json({
-    error: 'TODO: Implement PUT /checkouts/:id',
-    hint: 'See workshop Module 4, Chapter 3'
-  });
+  try {
+    const { id } = req.params;
+    const { items, buyer, fulfillment_address, fulfillment_option_id } = req.body;
+    
+    const checkout = checkouts.get(id);
+    
+    if (!checkout) {
+      return res.status(404).json({
+        type: 'invalid_request',
+        code: 'checkout_not_found',
+        message: `Checkout with id '${id}' not found`
+      });
+    }
+    
+    // Can't modify completed/canceled checkouts
+    if (checkout.status === 'completed') {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'checkout_completed',
+        message: 'Cannot modify a completed checkout'
+      });
+    }
+    
+    if (checkout.status === 'canceled') {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'checkout_canceled',
+        message: 'Cannot modify a canceled checkout'
+      });
+    }
+    
+    // Update items if provided
+    if (items && Array.isArray(items)) {
+      const products = getProducts();
+      
+      for (const item of items) {
+        if (!item.id || typeof item.quantity !== 'number' || item.quantity < 1) {
+          return res.status(400).json({
+            type: 'invalid_request',
+            code: 'invalid_item',
+            message: 'Each item must have an id and positive quantity'
+          });
+        }
+        
+        if (!products.find(p => p.id === item.id)) {
+          return res.status(400).json({
+            type: 'invalid_request',
+            code: 'product_not_found',
+            message: `Product not found: ${item.id}`
+          });
+        }
+      }
+      
+      checkout.line_items = calculateLineItems(items);
+    }
+    
+    // Update buyer, address, and shipping option
+    if (buyer) checkout.buyer = { ...checkout.buyer, ...buyer };
+    if (fulfillment_address) checkout.fulfillment_address = { ...checkout.fulfillment_address, ...fulfillment_address };
+    
+    if (fulfillment_option_id) {
+      const validOption = defaultFulfillmentOptions.find(fo => fo.id === fulfillment_option_id);
+      if (!validOption) {
+        return res.status(400).json({
+          type: 'invalid_request',
+          code: 'invalid_fulfillment_option',
+          message: `Invalid fulfillment option: ${fulfillment_option_id}`
+        });
+      }
+      checkout.fulfillment_option_id = fulfillment_option_id;
+    }
+    
+    checkout.updated_at = new Date().toISOString();
+    checkouts.set(id, checkout);
+    
+    console.log('✏️ Checkout updated:', id, '- Status:', determineStatus(checkout));
+    res.json(formatCheckoutResponse(checkout));
+    
+  } catch (error) {
+    console.error('Update checkout error:', error);
+    res.status(500).json({
+      type: 'processing_error',
+      code: 'internal_error',
+      message: 'An error occurred while updating the checkout'
+    });
+  }
 });
 
 
@@ -312,11 +482,184 @@ router.put('/:id', (req, res) => {
  * - Return formatCheckoutResponse(checkout)
  */
 router.post('/:id/complete', async (req, res) => {
-  // TODO: Implement this endpoint
-  return res.status(501).json({
-    error: 'TODO: Implement POST /checkouts/:id/complete',
-    hint: 'See workshop Module 4, Chapter 4'
-  });
+  try {
+    const { id } = req.params;
+    const { payment_data, buyer } = req.body;
+    
+    const checkout = checkouts.get(id);
+    
+    if (!checkout) {
+      return res.status(404).json({
+        type: 'invalid_request',
+        code: 'checkout_not_found',
+        message: `Checkout with id '${id}' not found`
+      });
+    }
+    
+    if (checkout.status === 'completed') {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'checkout_already_completed',
+        message: 'Checkout has already been completed'
+      });
+    }
+    
+    if (checkout.status === 'canceled') {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'checkout_canceled',
+        message: 'Cannot complete a canceled checkout'
+      });
+    }
+    
+    // Validate payment data
+    if (!payment_data || !payment_data.token) {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'missing_payment_token',
+        message: 'Payment token is required'
+      });
+    }
+    
+    // Validate SPT format
+    if (!payment_data.token.startsWith('spt_')) {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'invalid_token',
+        message: 'Invalid SPT token format. Token must start with spt_'
+      });
+    }
+    
+    if (buyer) checkout.buyer = { ...checkout.buyer, ...buyer };
+    
+    // FINAL STOCK CHECK - Right before payment!
+    // This catches edge cases where stock changed after checkout was created
+    const products = getProducts(checkout.catalog);
+    for (const lineItem of checkout.line_items) {
+      const product = products.find(p => p.id === lineItem.id);
+      
+      if (!product) {
+        return res.status(400).json({
+          type: 'checkout_error',
+          code: 'product_not_found',
+          message: `Product no longer available: ${lineItem.title}`
+        });
+      }
+      
+      if (!product.inStock || product.stock < lineItem.item.quantity) {
+        console.log(`❌ Stock check failed: ${product.title} has ${product.stock} but need ${lineItem.item.quantity}`);
+        return res.status(400).json({
+          type: 'checkout_error',
+          code: 'insufficient_stock',
+          message: `Insufficient stock for: ${lineItem.title}`
+        });
+      }
+    }
+    console.log('✅ Final stock check passed');
+    
+    console.log('💳 Processing payment for checkout:', id);
+    console.log('   Token:', payment_data.token.substring(0, 30) + '...');
+    
+    // Calculate total amount
+    const fulfillmentOption = checkout.fulfillment_option_id
+      ? defaultFulfillmentOptions.find(fo => fo.id === checkout.fulfillment_option_id)
+      : null;
+    const totals = calculateTotals(checkout.line_items, fulfillmentOption);
+    const totalAmount = totals.find(t => t.type === 'total')?.amount || 0;
+    
+    // Process payment with Stripe using the SPT
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    
+    if (stripeSecretKey && payment_data.provider === 'stripe') {
+      try {
+        // Create PaymentIntent with the SPT
+        const params = new URLSearchParams({
+          amount: totalAmount.toString(),
+          currency: checkout.currency,
+          shared_payment_granted_token: payment_data.token,
+          'payment_method_types[0]': 'card',
+          confirm: 'true'
+        });
+        
+        const response = await fetch('https://api.stripe.com/v1/payment_intents', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${stripeSecretKey}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: params.toString()
+        });
+        
+        const paymentIntent = await response.json();
+        
+        if (paymentIntent.error) {
+          console.error('Payment error:', paymentIntent.error.message);
+          checkout.messages.push({
+            type: 'error',
+            code: 'payment_declined',
+            content: paymentIntent.error.message
+          });
+          checkouts.set(id, checkout);
+          return res.status(400).json(formatCheckoutResponse(checkout));
+        }
+        
+        if (paymentIntent.status !== 'succeeded') {
+          checkout.messages.push({
+            type: 'error',
+            code: 'payment_failed',
+            content: 'Payment could not be processed'
+          });
+          checkouts.set(id, checkout);
+          return res.status(400).json(formatCheckoutResponse(checkout));
+        }
+        
+        console.log('   ✅ Payment succeeded:', paymentIntent.id);
+        checkout.payment_intent_id = paymentIntent.id;
+        
+      } catch (stripeError) {
+        console.error('Stripe API error:', stripeError.message);
+        return res.status(500).json({
+          type: 'processing_error',
+          code: 'payment_failed',
+          message: 'Payment processing failed'
+        });
+      }
+    } else {
+      // Demo mode without Stripe key
+      console.log('   ⚠️  Demo mode - simulating successful payment');
+    }
+    
+    // NOTE: Stock is decremented via webhook, not here
+    // This ensures stock only changes when Stripe confirms payment
+    console.log('   ⏳ Stock will be reserved when webhook confirms payment');
+    
+    // Mark as completed
+    checkout.status = 'completed';
+    checkout.completed_at = new Date().toISOString();
+    checkout.order = {
+      id: `order_${crypto.randomBytes(12).toString('hex')}`,
+      checkout_session_id: checkout.id,
+      permalink_url: `https://example.com/orders/${checkout.id}`
+    };
+    
+    checkout.messages.push({
+      type: 'info',
+      content: 'Order placed successfully! Thank you for your purchase.'
+    });
+    
+    checkouts.set(id, checkout);
+    
+    console.log('🎉 Checkout completed:', id);
+    res.json(formatCheckoutResponse(checkout));
+    
+  } catch (error) {
+    console.error('Complete checkout error:', error);
+    res.status(500).json({
+      type: 'processing_error',
+      code: 'internal_error',
+      message: 'An error occurred while completing the checkout'
+    });
+  }
 });
 
 /**
@@ -332,11 +675,56 @@ router.post('/:id/complete', async (req, res) => {
  * - Return formatCheckoutResponse(checkout)
  */
 router.post('/:id/cancel', (req, res) => {
-  // TODO: Implement this endpoint
-  return res.status(501).json({
-    error: 'TODO: Implement POST /checkouts/:id/cancel',
-    hint: 'See workshop Module 4, Chapter 5'
-  });
+  try {
+    const { id } = req.params;
+    const { reason } = req.body;
+    
+    const checkout = checkouts.get(id);
+    
+    if (!checkout) {
+      return res.status(404).json({
+        type: 'invalid_request',
+        code: 'checkout_not_found',
+        message: `Checkout with id '${id}' not found`
+      });
+    }
+    
+    if (checkout.status === 'completed') {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'checkout_completed',
+        message: 'Cannot cancel a completed checkout'
+      });
+    }
+    
+    if (checkout.status === 'canceled') {
+      return res.status(400).json({
+        type: 'invalid_request',
+        code: 'already_canceled',
+        message: 'Checkout has already been canceled'
+      });
+    }
+    
+    checkout.status = 'canceled';
+    checkout.canceled_at = new Date().toISOString();
+    checkout.messages.push({
+      type: 'info',
+      content: reason ? `Checkout cancelled: ${reason}` : 'Checkout has been cancelled'
+    });
+    
+    checkouts.set(id, checkout);
+    
+    console.log('❌ Checkout cancelled:', id);
+    res.json(formatCheckoutResponse(checkout));
+    
+  } catch (error) {
+    console.error('Cancel checkout error:', error);
+    res.status(500).json({
+      type: 'processing_error',
+      code: 'internal_error',
+      message: 'An error occurred while canceling the checkout'
+    });
+  }
 });
 
 
